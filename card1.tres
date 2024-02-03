@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cr4xna2n0dbf4"]
+
+[ext_resource type="Texture2D" uid="uid://bgnqat74nwhyv" path="res://card1-image.png" id="1_w0ng6"]
+[ext_resource type="Script" path="res://modules/cards/resources/card.gd" id="2_wkmu4"]
+
+[resource]
+script = ExtResource("2_wkmu4")
+title = "Card 1"
+image = ExtResource("1_w0ng6")
+description = "Something interesting for Card 1.
+
+Hmm..."

@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://duu37rrbjqu1q"]
+
+[ext_resource type="PackedScene" uid="uid://sshcbsihxp58" path="res://modules/cards/scenes/card_gui.tscn" id="1_b2vek"]
+
+[node name="Main" type="Node"]
+
+[node name="Cards" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Card1" parent="Cards" instance=ExtResource("1_b2vek")]
+layout_mode = 2
+offset_left = 301.0
+offset_top = 458.0
+offset_right = 551.0
+offset_bottom = 808.0
+
+[node name="Card2" parent="Cards" instance=ExtResource("1_b2vek")]
+layout_mode = 2
+offset_left = 451.0
+offset_top = 458.0
+offset_right = 701.0
+offset_bottom = 808.0
+
+[node name="Card3" parent="Cards" instance=ExtResource("1_b2vek")]
+layout_mode = 2
+offset_left = 601.0
+offset_top = 458.0
+offset_right = 851.0
+offset_bottom = 808.0
+
+[node name="Card4" parent="Cards" instance=ExtResource("1_b2vek")]
+layout_mode = 2
+offset_left = 601.0
+offset_top = 458.0
+offset_right = 851.0
+offset_bottom = 808.0
+
+[node name="Card5" parent="Cards" instance=ExtResource("1_b2vek")]
+layout_mode = 2
+offset_left = 601.0
+offset_top = 458.0
+offset_right = 851.0
+offset_bottom = 808.0
