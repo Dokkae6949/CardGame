@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://sshcbsihxp58"]
+[gd_scene load_steps=13 format=3 uid="uid://sshcbsihxp58"]
 
 [ext_resource type="Script" path="res://modules/smooth_translator/smooth_translator_control.gd" id="1_5cd47"]
+[ext_resource type="Script" path="res://modules/cards/scripts/card_gui.gd" id="1_gkgsg"]
 [ext_resource type="Texture2D" uid="uid://bgnqat74nwhyv" path="res://card1-image.png" id="3_5jpva"]
 [ext_resource type="Texture2D" uid="uid://c7f3lhjpmoay4" path="res://modules/cards/assets/cards/card-border-2.png" id="3_ai3tj"]
+[ext_resource type="Script" path="res://modules/cards/resources/card.gd" id="3_aq6vl"]
 [ext_resource type="Script" path="res://modules/cards/scenes/Border.gd" id="4_ykfth"]
 [ext_resource type="Script" path="res://modules/shared/state_machine/state_machine.gd" id="5_5qnbb"]
 [ext_resource type="Script" path="res://modules/cards/scripts/states/card_state_idle.gd" id="6_s7dqy"]
@@ -10,7 +12,14 @@
 [ext_resource type="Script" path="res://modules/cards/scripts/states/card_state_hover.gd" id="7_xiep5"]
 [ext_resource type="Script" path="res://modules/cards/scripts/states/card_state_released.gd" id="8_txdwg"]
 
-[node name="CardGUI" type="Control"]
+[sub_resource type="Resource" id="Resource_2hmq4"]
+script = ExtResource("3_aq6vl")
+title = "Test"
+image = ExtResource("3_5jpva")
+description = "This is a test card."
+actions = Array[Resource("res://modules/cards/resources/card_action.gd")]([])
+
+[node name="CardGUI" type="Control" node_paths=PackedStringArray("image", "title", "description")]
 custom_minimum_size = Vector2(250, 350)
 layout_mode = 3
 anchors_preset = 0
@@ -18,6 +27,11 @@ offset_right = 250.0
 offset_bottom = 350.0
 pivot_offset = Vector2(125, 175)
 focus_mode = 2
+script = ExtResource("1_gkgsg")
+card_data = SubResource("Resource_2hmq4")
+image = NodePath("MarginContainer/VBoxContainer/TextureRect")
+title = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Title")
+description = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Description")
 
 [node name="SmoothTranslator" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("1_5cd47")
@@ -88,13 +102,23 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_font_sizes/font_size = 18
 text = "Title"
 
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 10
+text = "Description"
+
 [node name="Border" type="NinePatchRect" parent="."]
-modulate = Color(0.5, 0.25, 0.254167, 1)
+modulate = Color(0.5, 0.270327, 0.25, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +134,7 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 script = ExtResource("4_ykfth")
-speed = 0.5
+speed = 0.25
 
 [connection signal="gui_input" from="." to="StateMachine/IdleState" method="_on_card_gui_gui_input"]
 [connection signal="gui_input" from="." to="StateMachine/HoverState" method="_on_card_gui_gui_input"]
